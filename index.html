@@ -3,100 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamer Profile | Showcase</title>
+    <title>assasinSAM | Gamer Log</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0f172a; color: #f8fafc; }
-        .game-card { transition: transform 0.3s ease; }
-        .game-card:hover { transform: translateY(-5px); }
-        .status-done { color: #4ade80; } /* Green */
-        .status-playing { color: #60a5fa; } /* Blue */
-        .status-soon { color: #fbbf24; } /* Yellow */
-        .status-dropped { color: #f87171; } /* Red */
+        body {
+            background-color: #020617;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.05) 0px, transparent 50%), 
+                radial-gradient(at 90% 10%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: #f8fafc;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .filter-btn { border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.2s; }
+        .filter-btn.active {
+            background-color: rgba(139, 92, 246, 0.2);
+            border-color: #8b5cf6;
+            color: white;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+        .game-card { display: block; }
+        .game-card.hidden { display: none; }
     </style>
 </head>
-<body class="font-sans">
+<body class="font-sans antialiased pb-20">
 
-    <header class="py-10 text-center border-b border-slate-800">
-        <h1 class="text-4xl font-bold tracking-tight text-blue-500">GAMER_LOG</h1>
-        <p class="mt-2 text-slate-400">Computer Tech by day, Tarnished by night.</p>
+    <header class="py-12 text-center glass-panel mb-10 border-b border-white/5">
+        <h1 class="text-5xl font-black tracking-tighter text-white uppercase italic">assasin<span class="text-violet-500">SAM</span></h1>
+        <p class="mt-2 text-slate-400 font-light tracking-widest uppercase text-[10px]">Computer Technician • English Honours • Souls Veteran</p>
         
-        <div class="mt-6 flex justify-center gap-6">
-            <a href="#" class="hover:text-blue-400">Steam</a>
-            <a href="#" class="hover:text-blue-400">GitHub</a>
-            <a href="#" class="hover:text-blue-400">Twitter/X</a>
-            <a href="#" class="hover:text-blue-400">Discord</a>
+        <div class="mt-8 flex flex-wrap justify-center gap-2 px-4">
+            <button onclick="filterGames('all', this)" class="filter-btn active px-4 py-2 rounded-full text-xs uppercase tracking-widest font-bold">All</button>
+            <button onclick="filterGames('playing', this)" class="filter-btn px-4 py-2 rounded-full text-xs uppercase tracking-widest font-bold text-blue-400">Playing</button>
+            <button onclick="filterGames('done', this)" class="filter-btn px-4 py-2 rounded-full text-xs uppercase tracking-widest font-bold text-green-400">Done</button>
+            <button onclick="filterGames('unfinished', this)" class="filter-btn px-4 py-2 rounded-full text-xs uppercase tracking-widest font-bold text-red-400">Dropped</button>
+            <button onclick="filterGames('pending', this)" class="filter-btn px-4 py-2 rounded-full text-xs uppercase tracking-widest font-bold text-yellow-500">Pending</button>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto p-6">
+    <main class="max-w-6xl mx-auto px-6">
         
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
-            <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
-                <span class="block text-2xl font-bold status-done">12</span>
-                <span class="text-xs uppercase text-slate-500">Completed</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+            <div class="glass-panel p-4 rounded-xl border-l-2 border-emerald-500">
+                <p class="text-[10px] text-slate-500 uppercase font-bold">Processor</p>
+                <p class="text-sm font-bold">i5 7th Gen</p>
             </div>
-            <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
-                <span class="block text-2xl font-bold status-playing">2</span>
-                <span class="text-xs uppercase text-slate-500">Ongoing</span>
+            <div class="glass-panel p-4 rounded-xl border-l-2 border-blue-500">
+                <p class="text-[10px] text-slate-500 uppercase font-bold">Graphics</p>
+                <p class="text-sm font-bold">Intel HD 620</p>
             </div>
-            <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
-                <span class="block text-2xl font-bold status-soon">5</span>
-                <span class="text-xs uppercase text-slate-500">Wishlist</span>
-            </div>
-            <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
-                <span class="block text-2xl font-bold status-dropped">3</span>
-                <span class="text-xs uppercase text-slate-500">Dropped</span>
+            <div class="glass-panel p-4 rounded-xl border-l-2 border-violet-500">
+                <p class="text-[10px] text-slate-500 uppercase font-bold">Memory</p>
+                <p class="text-sm font-bold">8GB DDR4</p>
             </div>
         </div>
 
-        <section>
-            <h2 class="text-2xl font-semibold mb-6">Library Archive</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <div class="game-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
-                    <div class="h-40 bg-slate-700 flex items-center justify-center text-slate-500">No Cover Art</div>
-                    <div class="p-4">
-                        <span class="text-xs font-bold status-done uppercase">Completed</span>
-                        <h3 class="text-lg font-bold">Dark Souls III</h3>
-                        <p class="text-sm text-slate-400">Platinum achievement unlocked.</p>
-                    </div>
-                </div>
-
-                <div class="game-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
-                    <div class="h-40 bg-slate-700 flex items-center justify-center text-slate-500">No Cover Art</div>
-                    <div class="p-4">
-                        <span class="text-xs font-bold status-playing uppercase">Currently Playing</span>
-                        <h3 class="text-lg font-bold">Elden Ring</h3>
-                        <p class="text-sm text-slate-400">Exploring the Shadow of the Erdtree.</p>
-                    </div>
-                </div>
-
-                <div class="game-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
-                    <div class="h-40 bg-slate-700 flex items-center justify-center text-slate-500">No Cover Art</div>
-                    <div class="p-4">
-                        <span class="text-xs font-bold status-dropped uppercase">Left for Now</span>
-                        <h3 class="text-lg font-bold">The Long Drive</h3>
-                        <p class="text-sm text-slate-400">Glitchy physics finally got to me.</p>
-                    </div>
-                </div>
-
-                <div class="game-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
-                    <div class="h-40 bg-slate-700 flex items-center justify-center text-slate-500">No Cover Art</div>
-                    <div class="p-4">
-                        <span class="text-xs font-bold status-soon uppercase">Up Next</span>
-                        <h3 class="text-lg font-bold">Black Ops 6</h3>
-                        <p class="text-sm text-slate-400">Waiting for the weekend grind.</p>
-                    </div>
-                </div>
-
+        <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            
+            <div class="game-card glass-panel p-4 rounded-xl border-t-2 border-blue-500" data-category="playing">
+                <span class="text-[9px] font-bold text-blue-400 uppercase">Currently Playing</span>
+                <h3 class="text-sm font-bold text-white mt-1">COD 4: Modern Warfare</h3>
             </div>
-        </section>
+            <div class="game-card glass-panel p-4 rounded-xl border-t-2 border-blue-500" data-category="playing">
+                <span class="text-[9px] font-bold text-blue-400 uppercase">Currently Playing</span>
+                <h3 class="text-sm font-bold text-white mt-1">Deadpool</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-t-2 border-blue-500" data-category="playing">
+                <span class="text-[9px] font-bold text-blue-400 uppercase">Currently Playing</span>
+                <h3 class="text-sm font-bold text-white mt-1">Far Cry 3</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-t-2 border-blue-500" data-category="playing">
+                <span class="text-[9px] font-bold text-blue-400 uppercase">Currently Playing</span>
+                <h3 class="text-sm font-bold text-white mt-1">Jump Force</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-t-2 border-blue-500" data-category="playing">
+                <span class="text-[9px] font-bold text-blue-400 uppercase">Currently Playing</span>
+                <h3 class="text-sm font-bold text-white mt-1">Resident Evil 7</h3>
+            </div>
+
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Assassin’s Creed</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Batman: Arkham City</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Batman: Arkham Origins</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Beyond: Two Souls</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">COD: Modern Warfare 2</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">COD: Modern Warfare 3</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Dark Souls Remastered</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Devil May Cry 5</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Far Cry 1 & 2</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">GTA: San Andreas</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">GTA: Vice City</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Heavy Rain</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">MGS V: Phantom Pain</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">MGS: Peace Walker</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Prototype 2</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Resident Evil 4, 5, 6</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Sleeping Dogs</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl" data-category="done">
+                <span class="text-[9px] font-bold text-green-500 uppercase">Completed</span>
+                <h3 class="text-sm font-bold text-white mt-1">Total Overdose</h3>
+            </div>
+
+            <div class="game-card glass-panel p-4 rounded-xl border-l-2 border-red-500" data-category="unfinished">
+                <span class="text-[9px] font-bold text-red-400 uppercase">Left Unfinished</span>
+                <h3 class="text-sm font-bold text-white mt-1">Assassin’s Creed II</h3>
+                <p class="text-[9px] text-slate-500 italic mt-1">PC Broke</p>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-l-2 border-red-500" data-category="unfinished">
+                <span class="text-[9px] font-bold text-red-400 uppercase">Left Unfinished</span>
+                <h3 class="text-sm font-bold text-white mt-1">Batman: Arkham Asylum</h3>
+                <p class="text-[9px] text-slate-500 italic mt-1">PC Broke</p>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-l-2 border-red-500" data-category="unfinished">
+                <span class="text-[9px] font-bold text-red-400 uppercase">Left Unfinished</span>
+                <h3 class="text-sm font-bold text-white mt-1">Hollow Knight & Silksong</h3>
+                <p class="text-[9px] text-slate-500 italic mt-1">Too Hard</p>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-l-2 border-red-500" data-category="unfinished">
+                <span class="text-[9px] font-bold text-red-400 uppercase">Left Unfinished</span>
+                <h3 class="text-sm font-bold text-white mt-1">The Wolf Among Us</h3>
+                <p class="text-[9px] text-slate-500 italic mt-1">PC Broke</p>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl border-l-2 border-red-500" data-category="unfinished">
+                <span class="text-[9px] font-bold text-red-400 uppercase">Left Unfinished</span>
+                <h3 class="text-sm font-bold text-white mt-1">Prototype / MK XL / Little Nightmares</h3>
+                <p class="text-[9px] text-slate-500 italic mt-1">Lost Interest</p>
+            </div>
+
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Alan Wake</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Assetto Corsa</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">AC: Brotherhood / Revelations / III</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Batman: Arkham Knight</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">BioShock Trilogy</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Doom (2016)</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Fallout 3 & New Vegas</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">GTA IV & V</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Half-Life 2</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Life Is Strange 2 / Before Storm</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Mirror's Edge</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">NFS: Most Wanted (2005/2012)</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">NieR: Automata</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Outlast 1 & 2</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Portal 1 & 2</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Skyrim</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">The Walking Dead (Full Series)</h3>
+            </div>
+            <div class="game-card glass-panel p-4 rounded-xl opacity-60" data-category="pending">
+                <span class="text-[9px] font-bold text-yellow-500 uppercase">Pending</span>
+                <h3 class="text-sm font-bold text-white mt-1">Tomb Raider (2013)</h3>
+            </div>
+
+        </div>
     </main>
 
-    <footer class="mt-20 py-10 text-center border-t border-slate-800 text-slate-600 text-sm">
-        &copy; 2026 Gaming Portfolio. Built with HTML/Tailwind.
-    </footer>
-
+    <script>
+        function filterGames(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
